@@ -8,4 +8,4 @@ dependencies:
   - numpy
   - scipy
   - matplotlib
-  - rdkit
+  - rdkit-dev
