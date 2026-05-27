@@ -341,7 +341,7 @@ def _(mo):
 
     The power of Python lies in its modules. There are hundreds of functions available in collections that form part of the [standard library](https://docs.python.org/3/library/index.html) and even more are available to install online. The most common repository of Python packages is [PyPI](https://pypi.org/).
 
-    Once you have a package installed (either because it was formed as part of the standard library or you installed it using `pip install` in terminal), you need to import.
+    Once you have a package installed (either because it was formed as part of the standard library or you installed it using `pip install` in terminal), you need to import it.
 
     ### Recommended standard library modules
 
@@ -359,7 +359,73 @@ def _(mo):
     | `csv` | Reading and writing CSV files (e.g., from instruments) |
     | `tomllib` | Parsing TOML files |
     | `json` | Reading and writing JSON files |
+
+    ### Importing
+
+    To use functions or variables (or any other objects) from a module, you have to import them. You can do it in a number of ways:
+
+    - importing the entire module: `import module`
+    - importing the module with an alias `import module as m`
+    - importing a specific function `from module import function`
+
+    Let's see that in practice with different ways of using the square root function from the `math` module.
+
+    The code snippets below also demonstrate a useful formatting trick, where the floating point number is displayed as a string with X decimal points:
+
+    `variable:.Xf`
     """)
+    return
+
+
+@app.cell
+def _():
+    # Coordinates of point 1, as x y z
+    coords1 = [1, 1, 1]
+
+    # Coordinates of point 2, as x y z
+    coords2 = [3, 4, 5]
+
+    # Difference (pairwise)
+    dx = coords1[0] - coords2[0]
+    dy = coords1[0] - coords2[0]
+    dz = coords1[0] - coords2[0]
+    return dx, dy, dz
+
+
+@app.cell
+def _(dx, dy, dz):
+    # Importing the entire module
+    # Using dot to specify the sqrt function from math
+
+    import math
+
+    distance1 = math.sqrt(dx ** 2 + dy ** 2 + dz ** 2)
+    print(f"Distance is {distance1:.2f}.")
+    return
+
+
+@app.cell
+def _(dx, dy, dz):
+    # Importing the entire module under an alias
+    # Like above, but "math" is now just "m"
+
+    import math as m
+
+    distance3 = m.sqrt(dx ** 2 + dy ** 2 + dz ** 2)
+    print(f"Distance is {distance3:.2f}.")
+    return
+
+
+@app.cell
+def _(dx, dy, dz):
+    # Specifically importing sqrt from math
+    # It is now locally known directly as sqrt
+    # So no "dot notation" needed
+
+    from math import sqrt
+
+    distance2 = sqrt(dx ** 2 + dy ** 2 + dz ** 2)
+    print(f"Distance is {distance2:.2f}.")
     return
 
 
