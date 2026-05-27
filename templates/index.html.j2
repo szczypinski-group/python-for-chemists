@@ -102,7 +102,7 @@
     <h2 class="section-title">Workshop notebooks</h2>
     <p>Interactive notebooks in edit mode - you can modify and experiment with the code. Note that these <b>live in your browser</b> so make sure to save the outputs somewhere on your computer if you want to keep them!</p>
     <div class="cards">
-      {% for notebook in notebooks %}
+      {% for notebook in notebooks | sort(attribute='display_name') %}
       <!-- {{ notebook.display_name }} Notebook -->
       <div class="card">
         <div class="card-header">{{ notebook.display_name }}</div>

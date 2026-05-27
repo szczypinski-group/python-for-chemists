@@ -4,6 +4,7 @@
 #     "marimo",
 # ]
 # ///
+
 import marimo
 
 __generated_with = "0.23.7"
@@ -432,11 +433,6 @@ def _(dx, dy, dz):
 
     distance2 = sqrt(dx ** 2 + dy ** 2 + dz ** 2)
     print(f"Distance is {distance2:.2f}.")
-    return
-
-
-@app.cell
-def _():
     return
 
 
