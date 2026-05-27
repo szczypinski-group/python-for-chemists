@@ -112,7 +112,6 @@ def _(body_temp):
 
     print(f"Body temperature in Kelvin is {from_celsius1(body_temp)} K.")
     print(f"dG at 18 C is {gibbs(10, 18):.3f} J K-1 mol-1.")
-
     return
 
 
@@ -202,7 +201,7 @@ def from_celsius3(
     fahrenheit = False,
 ):
     """Convert temperature from Celsius.
-    
+
     Arguments
     ---------
     temp : int | float
@@ -216,7 +215,7 @@ def from_celsius3(
     -------
     float
         Temperature in Kelvin or Fahrenheit.
-    
+
     """
     if fahrenheit:
         return temp * (9/5) + 32
@@ -255,7 +254,7 @@ def from_celsius_final(
     fahrenheit : bool = False,
 ) -> float:
     """Convert temperature from Celsius.
-    
+
     Arguments
     ---------
     temp
@@ -268,7 +267,7 @@ def from_celsius_final(
     Returns
     -------
     Temperature in Kelvin or Fahrenheit.
-    
+
     """
     if fahrenheit:
         return temp * (9/5) + 32
@@ -282,11 +281,6 @@ def _():
     mo.md(r"""
     While it might feel completely unnecessary, starting your function definition with docstrings and explicit types, helps you structure your thoughts and makes coding much easier down the line.
     """)
-    return
-
-
-@app.cell
-def _():
     return
 
 
