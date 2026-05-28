@@ -12,6 +12,8 @@ def _():
     mo.md(r"""
     # Numerical and scientific Python
 
+    ## Numerical Python (NumPy)
+
     In this workshop we will learn the basics of [NumPy](https://numpy.org/). So far we have been performing some mathematical operations and using lists - but NumPy is much more efficient at these tasks. It introduces n-dimensional arrays (`ndarray`), has better numerical accuracy, is faster, and automates a lot of array-based operations that would otherwise require lots of `for` loops.
 
     To use NumPy we need to import it, and the convention is to do it using the `np` alias.
@@ -389,6 +391,22 @@ def _():
 @app.cell
 def _(array_2D):
     print(f"The array ranges from {array_2D.min()} to {array_2D.max()} with a mean value of {array_2D.mean()}.")
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Random numbers
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Scientific Python (SciPy)
+    """)
     return
 
 
