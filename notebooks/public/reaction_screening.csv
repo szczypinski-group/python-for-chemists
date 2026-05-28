@@ -1,0 +1,9 @@
+Entry,Substrate,Catalyst,Solvent,Temp_C,Yield_Percent,ee_Percent
+1,CC(=O)c1ccccc1,3375-31-3,DCM,25.5,82,94
+2,CC(=O)c1ccccc1,3375-31-3,THF,25.2,45,88
+3,CC(=O)c1ccccc1,3375-31-3,Toluene,59.6,91,92
+4,CC(=O)c1ccccc1,14694-95-2,DCM,24,0,nd
+5,CC(=O)c1ccccc1,14694-95-2,THF,60.2,12,40
+6,O=Cc1ccccc1,3375-31-3,DCM,25.1,78,91
+7,O=Cc1ccccc1,3375-31-3,MeCN,78.5,5,nd
+8,O=Cc1ccccc1,1295-35-8,DCM,-5.5,55,98
