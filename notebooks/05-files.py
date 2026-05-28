@@ -50,7 +50,7 @@ def _():
 
     ## Notebooks and local scripting
 
-    On your own computer, you would ideally know where the files you want to interact with are. As those workshop notebooks live in your browser memory, you need to specify locations exactly (or drop the files into temprary cache in the "Files" tab). The `mo.notebook_location()` function is used for this here.
+    On your own computer, you would ideally know where the files you want to interact with are. As those workshop notebooks live in your browser memory, you need to specify locations exactly (or drop the files into temprary cache in the "Files" tab). The `mo.notebook_location()` function can be used for this here but it is a bit funny with network locations. So we will save files directly in the "current working directory"
     """)
     return
 
@@ -58,7 +58,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ## Reading files
+    ## Reading and writing files
 
     In the programming world we have to **open** and **close** files to make sure everything works properly. In Python, we should deal with files using the `with` environment - it will do the opening and closing operations for us automatically. We can open the file in one of three main modes: "r"ead, "w"rite (replaces the content), and "a"ppend (adds to the content).
 
@@ -66,6 +66,141 @@ def _():
     with open(FILE_PATH, MODE) as f:
         operations (f is the local variable for the file)
     ```
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Writing example files
+
+    Let's start by writing some files to local memory. Of course, on your computer you would probably have some files already present! I have created some files (content in the hidden celll below) to use throughout this workshop.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    csv_data = """Entry,Substrate,Catalyst,Solvent,Temp_C,Yield_Percent,ee_Percent
+    1,CC(=O)c1ccccc1,3375-31-3,DCM,25.5,82,94
+    2,CC(=O)c1ccccc1,3375-31-3,THF,25.2,45,88
+    3,CC(=O)c1ccccc1,3375-31-3,Toluene,59.6,91,92
+    4,CC(=O)c1ccccc1,14694-95-2,DCM,24,0,nd
+    5,CC(=O)c1ccccc1,14694-95-2,THF,60.2,12,40
+    6,O=Cc1ccccc1,3375-31-3,DCM,25.1,78,91
+    7,O=Cc1ccccc1,3375-31-3,MeCN,78.5,5,nd
+    8,O=Cc1ccccc1,1295-35-8,DCM,-5.5,55,98"""
+
+    json_data = """[
+      {"Entry": 1, "Substrate": "CC(=O)c1ccccc1", "Catalyst": "3375-31-3", "Solvent": "DCM", "Temp_C": 25.5, "Yield": 82, "ee": 94},
+      {"Entry": 2, "Substrate": "CC(=O)c1ccccc1", "Catalyst": "3375-31-3", "Solvent": "THF", "Temp_C": 25.2, "Yield": 45, "ee": 88},
+      {"Entry": 3, "Substrate": "CC(=O)c1ccccc1", "Catalyst": "3375-31-3", "Solvent": "Toluene", "Temp_C": 59.6, "Yield": 91, "ee": 92},
+      {"Entry": 4, "Substrate": "CC(=O)c1ccccc1", "Catalyst": "14694-95-2", "Solvent": "DCM", "Temp_C": 24.0, "Yield": 0, "ee": "nd"},
+      {"Entry": 5, "Substrate": "CC(=O)c1ccccc1", "Catalyst": "14694-95-2", "Solvent": "THF", "Temp_C": 60.2, "Yield": 12, "ee": 40},
+      {"Entry": 6, "Substrate": "O=Cc1ccccc1", "Catalyst": "3375-31-3", "Solvent": "DCM", "Temp_C": 25.1, "Yield": 78, "ee": 91},
+      {"Entry": 7, "Substrate": "O=Cc1ccccc1", "Catalyst": "3375-31-3", "Solvent": "MeCN", "Temp_C": 78.5, "Yield": 5, "ee": "nd"},
+      {"Entry": 8, "Substrate": "O=Cc1ccccc1", "Catalyst": "1295-35-8", "Solvent": "DCM", "Temp_C": -5.5, "Yield": 55, "ee": 98}
+    ]"""
+
+
+    toml_data = """[[reactions]]
+    Entry = 1
+    Substrate = "CC(=O)c1ccccc1"
+    Catalyst = "3375-31-3"
+    Solvent = "DCM"
+    Temp_C = 25.5
+    Yield = 82
+    ee = 94
+
+    [[reactions]]
+    Entry = 2
+    Substrate = "CC(=O)c1ccccc1"
+    Catalyst = "3375-31-3"
+    Solvent = "THF"
+    Temp_C = 25.2
+    Yield = 45
+    ee = 88
+
+    [[reactions]]
+    Entry = 3
+    Substrate = "CC(=O)c1ccccc1"
+    Catalyst = "3375-31-3"
+    Solvent = "Toluene"
+    Temp_C = 59.6
+    Yield = 91
+    ee = 92
+
+    [[reactions]]
+    Entry = 4
+    Substrate = "CC(=O)c1ccccc1"
+    Catalyst = "14694-95-2"
+    Solvent = "DCM"
+    Temp_C = 24.0
+    Yield = 0
+    ee = "nd"
+
+    [[reactions]]
+    Entry = 5
+    Substrate = "CC(=O)c1ccccc1"
+    Catalyst = "14694-95-2"
+    Solvent = "THF"
+    Temp_C = 60.2
+    Yield = 12
+    ee = 40
+
+    [[reactions]]
+    Entry = 6
+    Substrate = "O=Cc1ccccc1"
+    Catalyst = "3375-31-3"
+    Solvent = "DCM"
+    Temp_C = 25.1
+    Yield = 78
+    ee = 91
+
+    [[reactions]]
+    Entry = 7
+    Substrate = "O=Cc1ccccc1"
+    Catalyst = "3375-31-3"
+    Solvent = "MeCN"
+    Temp_C = 78.5
+    Yield = 5
+    ee = "nd"
+
+    [[reactions]]
+    Entry = 8
+    Substrate = "O=Cc1ccccc1"
+    Catalyst = "1295-35-8"
+    Solvent = "DCM"
+    Temp_C = -5.5
+    Yield = 55
+    ee = 98
+    """
+
+    
+    return csv_data, json_data, toml_data
+
+
+@app.cell
+def _(csv_data, json_data, toml_data):
+    def writing_example():
+        with open("reaction_screening.csv", "w") as csv_file:
+           csv_file.write(csv_data)
+
+        with open("reaction_screening.json", "w") as json_file:
+            json_file.write(json_data)
+
+        with open("reaction_screening.toml", "w") as toml_file:
+            toml_file.write(toml_data)
+
+    writing_example()
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### Reading files
 
     You might remember that strings are basically sequences of characters - in Python files are sequences of lines. So we can iterate over them quite easily.
     """)
@@ -74,7 +209,7 @@ def _():
 
 @app.cell
 def _():
-    with open(mo.notebook_location() / "public" / "reaction_screening.csv", "r") as file:
+    with open("reaction_screening.csv", "r") as file:
         for line in file:
             print(line)
     return
@@ -94,7 +229,7 @@ app._unparsable_cell(
         substrates = set()
         ees = []
 
-        with open(mo.notebook_location() / "public" / "reaction_screening.csv") as f:
+        with open("reaction_screening.csv") as f:
             for line in f:
                 # Continue in the loop if "Entry" is in the current line
                 if # COMPLETE HERE :
@@ -110,7 +245,7 @@ app._unparsable_cell(
 
                     if ee == "nd":
                         ee = 0
-                    elif:
+                    else:
                         ee = int(ee)
 
                     # Those four lines can be simply replaced with:
@@ -151,32 +286,9 @@ def _(cleanup_screening):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ## Writing files
-
-    The following example should be reasonably straightforward now.
-    """)
-    return
-
-
-@app.cell
-def _():
-    def writing_example():
-        ees = [94, 88, 92, 0, 40, 91, 0, 98]
-
-        with open(mo.notebook_location() / "public" / "example_file.txt", "w") as file:
-            ees_string = str(ees)
-            file.write(ees_string)
-
-    writing_example()
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
     ## Other useful formats
 
-    This section is a bit more advanced - you might want to skip it, but if you are interested there is lots of useful real-world stuff here!
+    This section is a bit **more advanced** - you might want to skip it, but if you are interested there is lots of useful real-world stuff here!
 
     ### Dictionaries
 
@@ -243,7 +355,234 @@ def _():
     mo.md(r"""
     ### JSON and TOML
 
-    [`JSON`](https://en.wikipedia.org/wiki/JSON) and [`TOML`](https://toml.io/en/) files are great way of storing data in a more structured way than just `CSV`. JSON files look very similar to (potentially nested) dictionaries and can be reasonably well.
+    [`JSON`](https://en.wikipedia.org/wiki/JSON) and [`TOML`](https://toml.io/en/) files are great way of storing data in a more structured way than just `CSV`. JSON files look very similar to (potentially nested) dictionaries and can be reasonably human-readable. There even exist standard library modules for dealing with those files - that's how common they are! I recommend using the standard libraries, as they will also figure out the type of data and the overall structures (dictionaries, lists).
+    """)
+    return
+
+
+@app.cell
+def _():
+    import json
+
+    with open("reaction_screening.json", "r") as json_file:
+        # Loads JSON file - as lists and dictionaries directly!
+        reaction_json = json.load(json_file)
+
+    reaction_json
+    return json, reaction_json
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Let's see how easy it is to access structured data like this:
+    """)
+    return
+
+
+@app.cell
+def _(reaction_json):
+    reaction_json[2]["ee"]
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Or maybe we want to know the name of the catalyst that produced the highest yield?
+    """)
+    return
+
+
+@app.cell
+def _(catalysts_dict, reaction_json):
+    # Identify the maximum using the value of the "Yield" for comparisons
+    best_reaction = max(reaction_json, key=lambda x: x["Yield"])
+
+    # Look up the catalyst in our human-friendly dictionary
+    print(
+        "Highest-yielding catalyst was "
+        f"{catalysts_dict[best_reaction["Catalyst"]]}."
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    We can load data from TOML files in the same way. The only difference is that the file needs to be opened in the "binary" format (`mode="rb"). There is no functionality in the standard library to write TOML files yet. But those are very easy to modify by hand, they are more difficult to "break" than JSON files.
+
+    In this example, we load the data from a TOML file. We will now end up with a list called `reactions`, but otherwise it is all equivalent.
+    """)
+    return
+
+
+@app.cell
+def _():
+    import tomllib
+
+    with open("reaction_screening.toml", "rb") as toml_file:
+        # Loads JSON file - as lists and dictionaries directly!
+        reaction_toml = tomllib.load(toml_file)
+
+    reaction_toml
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Finally, let's save our `catalysts_dict` to a JSON file - so that we can easily use it in the future. Or maybe we will want to expand it by some other properties related to each catalyst, apart from the name - molecular weight could be useful when automating calculations involving masses and concentrations.
+
+    The `json.dump()` function is used to convert any Python object (including dictionaries and lists) into a JSON string, and then save it to a file. If you want to just get the string, you can use `json.dumps()`.
+    """)
+    return
+
+
+@app.cell
+def _(catalysts_dict, json):
+    with open("catalysts.json", "w") as catalysts_file:
+        json.dump(catalysts_dict, catalysts_file)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Modules to deal with files
+
+    This is another **more advanced topic** and it involves file management.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### `pathlib`
+
+    You might have noticed, that in the examples above we are "dividing" the output of `mo.notebook_location()` by a string to specify a file notation. This is actually not standard Python - this functionality comes from the [`pathlib` library](https://docs.python.org/3/library/pathlib.html). It is an extremely powerful library to deal with file paths in an [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) way. The take home message is that it is platform-independent (you remember how on Windows paths look something like `C:\Documents\file.txt` and on Linux they would use forward slashes instead, e.g. `/home/Filip/Documents` - that can cause troubles if you treat paths like strings) and allows you to reach any part of the file path, add extra paths, check if things exist, etc.
+
+    We will not go through this library in any level of details, I recommend reading up if you are interested. But here are some examples. I also use those examples in the later parts of the course, to expose you to "more modern way" of scripting in Python.
+
+    You can think of `Path` as another "type" - we chemists are good at it, it's like a "mole", yet another unit!
+    """)
+    return
+
+
+@app.cell
+def _():
+    from pathlib import Path
+
+    # Path is the "base" object of the library
+
+    print(f"Current working directory is: {Path.cwd()}")
+    print(f"Its parent directory is: {Path.cwd().parent}")
+
+    # We can create new paths using the division operator
+
+    pathlib_file = Path.cwd() / "example_file.txt"
+    print(f"Imagine file: {pathlib_file}")
+    print(f"The filename is: {pathlib_file.name}")
+    print(f"It also has a stem ({pathlib_file.stem}) and a suffix ({pathlib_file.suffix}).")
+    print(f"So we can create a new file: {pathlib_file.with_suffix(".doc")}")
+    print(f"But does it exist? {pathlib_file.with_suffix(".doc").exists()}")
+    return (Path,)
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    We can then do a whole range of standard file operators using methods such as `touch()`, `mkdir()`, `copy()`, or `unlink()`.
+    """)
+    return
+
+
+@app.cell
+def _(Path):
+    example_dir = Path.cwd() / "test_directory"
+
+    # This command will create a new directory
+    # At the path we just defined
+    # It will do nothing if it already exists (exist_ok)
+    # And it will create parent directories if needed
+
+    example_dir.mkdir(exist_ok=True, parents=True)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    We can also find files that match a pattern with `glob()` - remember `mo.notebook_location() ` is a `Path`!
+    """)
+    return
+
+
+@app.cell
+def _(Path):
+    for json_f in Path.cwd().glob("*.json"):
+        print(json_f.name)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Importantly, `pathlib` is a great way of reading and writing into files. The `Path.read_text()` and `Path.write-_text()` methods do all the file opening and closing operations - making the code much cleaner and without all those `with` statements we had above.
+    """)
+    return
+
+
+@app.cell
+def _(Path):
+    catalysts_json = (Path.cwd() / "catalysts.json").read_text()
+    print(catalysts_json)
+    return
+
+
+@app.cell
+def _(Path):
+    yet_anoter_file = Path.cwd() / "final_file.txt"
+
+    yet_anoter_file.write_text("The quick brown fox jumps over the lazy dog.")
+    yet_anoter_file.read_text()
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Finally, we have created quite a lot of files. Lets remove them all.
+    """)
+    return
+
+
+@app.cell
+def _(Path):
+    to_delete = [
+        Path.cwd() / "catalysts.json",
+        Path.cwd() / "final_file.txt",
+        Path.cwd() / "test_directory/"
+    ]
+
+    for screen in Path.cwd().glob("reaction_screening.*"):
+        to_delete.append(screen)
+
+    for del_file in to_delete:
+        if del_file.is_file():
+            del_file.unlink()
+        elif del_file.is_dir():
+            del_file.rmdir()
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ### `shutil`
+
+    If you need more advanced control over filesystem operations, then the [`shutil`](https://docs.python.org/3/library/shutil.html) library can help a lot. We won't cover it at all, but it has some other useful functionality like copying metadata or removing entire directory trees. If you are interested in that, feel free to read the documentation.
     """)
     return
 
