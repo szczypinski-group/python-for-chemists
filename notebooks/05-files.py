@@ -177,23 +177,20 @@ def _():
     ee = 98
     """
 
-    
+
     return csv_data, json_data, toml_data
 
 
 @app.cell
 def _(csv_data, json_data, toml_data):
-    def writing_example():
-        with open("reaction_screening.csv", "w") as csv_file:
-           csv_file.write(csv_data)
+    with open("reaction_screening.csv", "w") as _file:
+        _file.write(csv_data)
 
-        with open("reaction_screening.json", "w") as json_file:
-            json_file.write(json_data)
+    with open("reaction_screening.json", "w") as _file:
+        _file.write(json_data)
 
-        with open("reaction_screening.toml", "w") as toml_file:
-            toml_file.write(toml_data)
-
-    writing_example()
+    with open("reaction_screening.toml", "w") as _file:
+        _file.write(toml_data)
     return
 
 
@@ -209,8 +206,8 @@ def _():
 
 @app.cell
 def _():
-    with open("reaction_screening.csv", "r") as file:
-        for line in file:
+    with open("reaction_screening.csv", "r") as _file:
+        for line in _file:
             print(line)
     return
 
@@ -252,9 +249,8 @@ app._unparsable_cell(
                     # ee = int(ee) if ee != "nd" else 0
 
                     ees.append(ee)
-                
+
         return substrates, ees
-    
     """,
     name="_"
 )
@@ -364,9 +360,9 @@ def _():
 def _():
     import json
 
-    with open("reaction_screening.json", "r") as json_file:
+    with open("reaction_screening.json", "r") as _file:
         # Loads JSON file - as lists and dictionaries directly!
-        reaction_json = json.load(json_file)
+        reaction_json = json.load(_file)
 
     reaction_json
     return json, reaction_json
@@ -421,9 +417,9 @@ def _():
 def _():
     import tomllib
 
-    with open("reaction_screening.toml", "rb") as toml_file:
+    with open("reaction_screening.toml", "rb") as _file:
         # Loads JSON file - as lists and dictionaries directly!
-        reaction_toml = tomllib.load(toml_file)
+        reaction_toml = tomllib.load(_file)
 
     reaction_toml
     return
@@ -441,8 +437,8 @@ def _():
 
 @app.cell
 def _(catalysts_dict, json):
-    with open("catalysts.json", "w") as catalysts_file:
-        json.dump(catalysts_dict, catalysts_file)
+    with open("catalysts.json", "w") as _file:
+        json.dump(catalysts_dict, _file)
     return
 
 
@@ -481,12 +477,12 @@ def _():
 
     # We can create new paths using the division operator
 
-    pathlib_file = Path.cwd() / "example_file.txt"
-    print(f"Imagine file: {pathlib_file}")
-    print(f"The filename is: {pathlib_file.name}")
-    print(f"It also has a stem ({pathlib_file.stem}) and a suffix ({pathlib_file.suffix}).")
-    print(f"So we can create a new file: {pathlib_file.with_suffix(".doc")}")
-    print(f"But does it exist? {pathlib_file.with_suffix(".doc").exists()}")
+    _file = Path.cwd() / "example_file.txt"
+    print(f"Imagine file: {_file}")
+    print(f"The filename is: {_file.name}")
+    print(f"It also has a stem ({_file.stem}) and a suffix ({_file.suffix}).")
+    print(f"So we can create a new file: {_file.with_suffix(".doc")}")
+    print(f"But does it exist? {_file.with_suffix(".doc").exists()}")
     return (Path,)
 
 

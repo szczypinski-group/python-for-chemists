@@ -134,7 +134,6 @@ def _(np, plt):
 
         return fig
 
-
     labelled_plot()
     return
 

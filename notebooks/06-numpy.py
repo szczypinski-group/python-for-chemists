@@ -39,25 +39,23 @@ def _():
 
 @app.cell
 def _(np):
-    def example_axis():
-        # Python way
-        print("-" * 50)
-        print("Looping over lists in Python")
-        print("-" * 50)
-        nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        output = []
-        for x in nums:
-            output.append(2*x)
-        print(output)
+    # Python way
+    print("-" * 50)
+    print("Looping over lists in Python")
+    print("-" * 50)
+    _nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    _output = []
 
-        # NumPy way
-        print("-" * 50)
-        print("Applying multiplication to a NumPy array")
-        print("-" * 50)
-        arr = np.arange(10)
-        print(2 * arr)
+    for _x in _nums:
+        _output.append(2*_x)
+    print(_output)
 
-    example_axis()
+    # NumPy way
+    print("-" * 50)
+    print("Applying multiplication to a NumPy array")
+    print("-" * 50)
+    _arr = np.arange(10)
+    print(2 * _arr)
     return
 
 
