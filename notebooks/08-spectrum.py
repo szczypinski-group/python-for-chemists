@@ -17,7 +17,7 @@ with app.setup:
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Spectrum analysis exercise
+    # Laser spectrum analysis
 
     In this exercise we will analyse real world data from our 2nd year Physical Chemistry practicals - emission spectrum of a laser. It will combine some elements of the previous workshops. As always, **feel free to experiment** with the code in new Python cells, you can always easily restart the kernel if things go very wrong!
 
