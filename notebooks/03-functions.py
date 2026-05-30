@@ -35,9 +35,19 @@ def _():
     return
 
 
-@app.function
-def from_celsius0(temp):
-    print(f"Temperature in Kelvin is {temp+273.15} K.")
+@app.cell
+def _():
+    # Here `temp` it a function parameter that has to be specified
+    # and then it exists to be used only within the function
+    # - it's different from any other temp in the Python script!
+
+    temp = 0
+
+    def from_celsius0(temp):
+        # "function scope" temp is different from "global scope" temp (=0)
+        print(f"Temperature in Kelvin is {temp+273.15} K.")
+
+    return (from_celsius0,)
 
 
 @app.cell(hide_code=True)
@@ -49,7 +59,7 @@ def _():
 
 
 @app.cell
-def _():
+def _(from_celsius0):
     body_temp = 36.6
 
     # We can call the function just like before.

@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.23.7"
+__generated_with = "0.23.8"
 app = marimo.App()
 
 
@@ -35,7 +35,32 @@ def _(mo):
     - variables should use `snake_case` (i.e., all lowercase with underscores) rather than `CamelCase` (i.e., with words starting with uppercase); they **cannot** use `kebab-case` as minus sign is an operator!
     - variable names should be reasonably descriptive - it is best to avoid one-one letter variables outside simple iterators (we'll cover that later).
     - it is bad practice to redefine variables (`marimo` will not let you do that) - code gets confusing very fast!
+
+    ## Best `marimo` practices
+
+    The `marimo` team put together a useful [Best Practices](https://docs.marimo.io/guides/best_practices/) guide. It all boils down to trying to encapsulate your code as functions and avoiding using global variables because of potential name clashes (see subsequent notebooks). If you want the variable to be local to the cell, you can prefix its name with `_`.
     """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Comments
+
+    Throughout this workshop, we Markdown cells to annotate the code. This is useful for building a narrative. But somehow you want to include comments in your code that you do not want Python to read at all. Those are done with a hash symbol.
+    """)
+    return
+
+
+@app.cell
+def _():
+    some_energy = -14 # units: kJ
+
+    # This line is ignored
+    # We want to display the absolute value:
+
+    print(abs(some_energy))
     return
 
 
@@ -51,6 +76,8 @@ def _(mo):
 
 @app.cell
 def _():
+    # These are global variables that we will use throughout the workshop
+
     first_name = "Filip"
     year = 2026
     return first_name, year
@@ -104,19 +131,23 @@ def _(mo):
 
 @app.cell
 def _():
-    time_seconds = 90
-    time_minutes = time_seconds / 60
+    # These variables are local to the marimo cell
 
-    print(f"The time is {time_minutes} min.")
+    _time_seconds = 90
+    _time_minutes = _time_seconds / 60
+
+    print(f"The time is {_time_minutes} min.")
     return
 
 
 @app.cell
 def _():
-    long_time_minutes = 42
-    long_time_seconds = long_time_minutes * 60
+    # This means we can reuse them in other cells
 
-    print(f"The other time is {long_time_seconds} s.")
+    _time_minutes = 42
+    _time_seconds = _time_minutes * 60
+
+    print(f"The other time is {_time_seconds} s.")
     return
 
 
@@ -255,27 +286,6 @@ def _(mo):
 def _(first_name, masses_list):
     print(f"'{first_name}' without the first letter: '{first_name[1:]}'.")
     print(f"'{first_name}' has {len(first_name)} characters and our table has {len(masses_list)} masses.")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## Comments
-
-    Throughout this workshop, we used Markdown cells to annotate the code. This is useful for building a narrative. But somehow you want to include comments in your code that you do not want Python to read at all. Those are done with a hash symbol.
-    """)
-    return
-
-
-@app.cell
-def _():
-    some_energy = -14 # units: kJ
-
-    # This line is ignored
-    # We want to display the absolute value:
-
-    print(abs(some_energy))
     return
 
 
