@@ -106,14 +106,14 @@ def _():
 
 app._unparsable_cell(
     r"""
-    # Running this cell should display:
-    # Body temperature in Kelvin is 309.75 K.
-    # dG at 18 C is -5574.002 J K-1 mol-1.
-
     import math
 
     def from_celsius1(temp):
-        # FIXME: include a return statement 
+        # you can define an auxiliary variable (e.g. "kelvin_temp")
+        # or redefine the local variable with temp += ...
+        # or return the result of an operation straight away
+    
+        # FIXME: include a return statement
 
 
     def gibbs(k_eq, temp):
@@ -306,6 +306,29 @@ def from_celsius_final(
 
     else:
         return temp + 273.15
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Note that if the value returns nothing then its return type is `None`.
+    """)
+    return
+
+
+@app.function
+def print_temp(
+    temp : float | int,
+) -> None:
+    """Print value of the temperature.
+    
+    Arguments
+    ---------
+    temp
+        Temperature in Celsius.
+        
+    """
+    print(f"Temperature is {temp} degrees.")
 
 
 @app.cell(hide_code=True)
