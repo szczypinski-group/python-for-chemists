@@ -74,13 +74,22 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+app._unparsable_cell(
+    r"""
     # These are global variables that we will use throughout the workshop
 
-    first_name = "Filip"
-    year = 2026
-    return first_name, year
+    # We define strings with single or double quotes (same on both sides)
+    # first_name = "Filip"
+
+    first_name = # FIXME assign a name to the first_name variable
+
+    # We define integer and floating point numbers with no quotes
+    # year = 2026
+
+    year = # FIXME assign a number (no quotes) to the year variable
+    """,
+    name="_"
+)
 
 
 @app.cell(hide_code=True)
@@ -149,35 +158,42 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+app._unparsable_cell(
+    r"""
     # These variables are local to the marimo cell
 
-    _time_seconds = 90
+    _time_seconds = # FIXME
     _time_minutes = _time_seconds / 60
 
     print(f"The time is {_time_minutes} min.")
-    return
+    """,
+    name="_"
+)
 
 
-@app.cell
-def _():
+app._unparsable_cell(
+    r"""
     # This means we can reuse them in other cells
 
     _time_minutes = 42
-    _time_seconds = _time_minutes * 60
+    _time_seconds = # FIXME
 
     print(f"The other time is {_time_seconds} s.")
-    return
+    """,
+    name="_"
+)
 
 
-@app.cell
-def _():
+app._unparsable_cell(
+    r"""
     mass = 1.6
     light_speed = 3.0e8
+    energy = # FIXME (using E=mc^2)
 
-    print(f"Energy is {mass * light_speed ** 2}.")
-    return
+    print(f"Energy is {energy}.")
+    """,
+    name="_"
+)
 
 
 @app.cell(hide_code=True)
@@ -193,7 +209,7 @@ def _(mo):
 @app.cell
 def _(first_name):
     print(first_name * 2)
-    print(first_name + " Szczypinski")
+    print(first_name + " is learning Python")
     return
 
 
@@ -205,12 +221,16 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
-    answer = "42"
-    print(f"Multiplying a string: {answer * 2}")
-    print(f"Converting to float: {float(answer)*2}")
-    return
+app._unparsable_cell(
+    r"""
+    _answer = # FIXME: write a number as a string (with quotes)
+    # THEN fix this cell and write a number as an integer or float
+
+    print(f"Multiplying a string: {_answer * 2}")
+    print(f"Converting to float: {float(_answer)*2}")
+    """,
+    name="_"
+)
 
 
 @app.cell(hide_code=True)
@@ -567,7 +587,7 @@ def _(diff_x, diff_y, diff_z, sqrt):
 
         def distance_from(
             self,
-            point : "Point"
+            point : "Point" # Has to be a string as Point is not defined yet
         ):
             # FIXME: Define local variables for diff_x/y/z
 
@@ -601,7 +621,6 @@ def _(Point, mo):
             return mo.callout(f"❌ Python error: {e}.", kind="danger")
 
     check_point()
-
     return
 
 
