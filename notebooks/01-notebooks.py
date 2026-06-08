@@ -94,7 +94,7 @@ def _():
     mo.md(r"""
     # Python projects: complete workflow
 
-    This is a **_much_ more advanced topic**. You might want to skip it as you will not be able to currently do this on a University-managed Windows computer. Howver, I am including it for your future reference as I believe it is very important and useful. You should be able to do it on a Linux machine or your personal computer.
+    This is a **_much_ more advanced topic**. You might want to skip it as you will not be able to currently do this on a University-managed Windows computer. However, I am including it for your future reference as I believe it is very important and useful. You should be able to do it on a Linux machine or your personal computer.
 
     For implementing different versions of Python and packages, use the `pip` interface from the `uv` package. Installation instructions for all platforms are [here](https://docs.astral.sh/uv/getting-started/installation/). Most of your code should probably be what `uv` considers a [library](https://docs.astral.sh/uv/concepts/projects/init/#libraries), i.e. isolated code with `src` layour, `py.typed` indicator, and metadata stored in a `pyproject.toml` file.
 
