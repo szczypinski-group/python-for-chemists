@@ -55,7 +55,6 @@ def _():
 
     I recommend that for these workshops you do not use LLMs – there are plenty of links to original resources scattered throughout the notebooks to give you some background information about what we cover.
 
-
     ## Using `marimo` as a standalone tool
 
     If you don't want to use the browser-based notebooks in the future but have a locally availably `marimo` notebooks, you can install them locally as a standalone tool (that is what I do).
@@ -76,11 +75,11 @@ def _():
     mo.md(r"""
     # Git and version control
 
-    Modern coding projects use [version control](https://en.wikipedia.org/wiki/Version_control) for controlling and tracking different version of the source code. Probably the most widespread version control system is [Git](https://en.wikipedia.org/wiki/Git) - it was developed by Linus Torvalds for the development of the Linux kernel
+    Modern coding projects use [version control](https://en.wikipedia.org/wiki/Version_control) for controlling and tracking different version of the source code. Probably the most widespread version control system is [Git](https://en.wikipedia.org/wiki/Git) - it was developed by Linus Torvalds for the development of the Linux kernel.
 
     ## GitHub
 
-    GitHub is one of the most populars developer platforms for storing, managing, and sharing code. It uses Git and provides a number of other useful features. Since 2018 it has been owned by Microsoft, so I feel free to [explore alternatives](https://european-alternatives.eu/category/version-control-services) if you disagree with Microsoft practices.
+    GitHub is one of the most populars developer platforms for storing, managing, and sharing code. It uses Git and provides a number of other useful features. Since 2018 it has been owned by Microsoft, so feel free to [explore alternatives](https://european-alternatives.eu/category/version-control-services) if you disagree with Microsoft practices.
 
     My recommendation for my research group is that **all **code development should be done with version control on GitHub - you might have noticed that these workbooks are also a GitHub repository! Best practice is to work on the non-`main` branch for any actual development and then create a "pull request" for the tested code to be included in the main branch. For more information about how to use GitHub, see: https://docs.github.com/en/get-started/start-your-journey/hello-world/.
 
