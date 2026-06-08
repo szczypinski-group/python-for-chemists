@@ -567,7 +567,7 @@ def _(diff_x, diff_y, diff_z, sqrt):
 
         def distance_from(
             self,
-            point : tuple
+            point : "Point"
         ):
             # FIXME: Define local variables for diff_x/y/z
 
