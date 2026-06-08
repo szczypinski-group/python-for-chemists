@@ -130,7 +130,7 @@ def _():
     # Set up the main branch
     git branch -M main
     ```
-
+    
     You might want to add files to `.gitignore` so that theyy are not versioned by git, you can do it by editing the file or from the command line e.g.:
 
     ```sh
@@ -155,9 +155,8 @@ def _():
 
     ## Best practices
 
-    > Commit often in small hunks - **code dumps are almost impossible to review!**
-    {.is-warning}
-
+    > **Important**: Commit often in small hunks - **code dumps are almost impossible to review!**
+    
     1. We try to follow appropriate style guides (e.g., [Python PEP8](https://peps.python.org/pep-0008/), [Markdown](https://google.github.io/styleguide/docguide/style.html), [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)).
     2. Install a linter for your IDE, I recommend [ruff](https://docs.astral.sh/ruff/installation/) with some good default settings (see example `pyproject.toml`).
     3. Structure your code as a Python project and install [pre-commit](https://pre-commit.com/) to ensure consistency. **Use [uv](https://docs.astral.sh/uv/) for package and environment managing.**
@@ -174,7 +173,7 @@ def _():
     uv tool install ruff@latest
     uv add --dev ruff
     ```
-
+    
     and same for `pre-commit`:
 
     ```sh
