@@ -192,7 +192,7 @@ def _(body_temp):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    When using proper names of the arguments, we do not need to worry about the order. I would typically recommend doing it, so that the code is easier to read.
+    When using proper names of the arguments, we do not need to worry about the order. I would typically recommend using the order in the definition, so that the code is easier to read (also the order must be correct if argument names are not used.)
     """)
     return
 
@@ -218,7 +218,7 @@ def _():
     mo.md(r"""
     ## Docstrings
 
-    You might have notices that if you hover your mouse over a built-in function earlier in this workshop, you get a little box that describes what arguments it takes and what it does. Those are defined by so-called docstrings - strings placed at the top of the function. Traditionally they are multi-line strings where the first line provides a short summary, followed by longer description and information about what variables it takes, and what is returned.
+    You might have noticed that if you hovered your mouse over a built-in function earlier in this workshop, you got a little box that describes what arguments it takes and what it does. Those are defined by so-called docstrings - strings placed at the top of the function. Traditionally they are multi-line strings where the first line provides a short summary, followed by longer description and information about what variables it takes, and what is returned.
 
     Here, we will use the [numpy convention](https://numpydoc.readthedocs.io/en/latest/format.html) for our docstrings. Some developers prefer the [Google convention](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings).
 
