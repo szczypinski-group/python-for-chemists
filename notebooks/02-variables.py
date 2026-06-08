@@ -27,8 +27,8 @@ def _(mo):
 
     - cannot start with a number (e.g., `14all` instead of `one_for_all`)
     - cannot contain an operator (e.g., `two-two` instead of `two_minus_two`)
-    - they are case sensitive (`DeltaG` and `deltaG` are different variables)
-    - not a "Python keyword" (e.g., `and` or `except`)
+    - are case sensitive (`DeltaG` and `deltaG` are different variables)
+    - cannnot be a "Python keyword" (e.g., `and` or `except`)
 
     Furthermore, there are some [style recommendations](https://peps.python.org/pep-0008/):
 
@@ -120,15 +120,15 @@ def _(mo):
 
     In the most basic way, Python can be used as a simple calculator. For more advanced operations (or more efficient ways to perform operations on precise floating-point variables) such as matrix multiplication, we use the `numpy` library covered later.
 
-    | Operator | Name                  | Example  | Result         |
-    | -------- | --------------------- | -------- | -------------- |
-    | `+`      | Addition              | `3 + 2`  | `5`            |
-    | `-`      | Subtraction           | `3 - 2`  | `1`            |
-    | `*`      | Multiplication        | `3 * 2`  | `6`            |
-    | `/`      | True division         | `3 / 2`  | `1.5`          |
-    | `//`     | Floor division        | `3 // 2` | `1`            |
-    | `%`      | Modulo (remainder)    | `3 % 2`  | `1`            |
-    | `**`     | Exponentiation        | `3 ** 2` | `9`            |
+    | Operator | Name                     | Example  | Result         |
+    | -------- | -------------------------| -------- | -------------- |
+    | `+`      | Addition                 | `3 + 2`  | `5`            |
+    | `-`      | Subtraction              | `3 - 2`  | `1`            |
+    | `*`      | Multiplication           | `3 * 2`  | `6`            |
+    | `/`      | True division            | `3 / 2`  | `1.5`          |
+    | `//`     | Floor (Integer) division | `3 // 2` | `1`            |
+    | `%`      | Modulo (remainder)       | `3 % 2`  | `1`            |
+    | `**`     | Exponentiation           | `3 ** 2` | `9`            |
     """)
     return
 
@@ -295,7 +295,7 @@ def _(mo):
     mo.md(r"""
     We can also _slice_ a list to retrieve multiple elements. A convention that occurs throughout Python is that the first index is included but the second is not, with a format `[start : stop : step]`.
 
-    The default `step` is implied to be `1`. If we immit the `start` or `stop`, those will be the first and last element, respectively.
+    The default `step` is implied to be `1`. If we omit the `start` or `stop`, those will be the first and last element, respectively.
     """)
     return
 
@@ -567,7 +567,7 @@ def _(diff_x, diff_y, diff_z, sqrt):
 
         def distance_from(
             self,
-            point : Point
+            point : tuple
         ):
             # FIXME: Define local variables for diff_x/y/z
 
