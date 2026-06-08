@@ -19,9 +19,9 @@ def _():
     mo.md(r"""
     # Python Notebooks
 
-    Python notebooks are basically your interactive coding documents. While we don't always use them in research (we tend to favour standalone scripts for reproducibility), they are really useful for data processing and explorations. The notebooks for the workshops run in your browser - so **make suret to save all relevant files** to your computer before shutting it down!
+    Python notebooks are basically your interactive coding documents. While we don't always use them in research (we tend to favour standalone scripts for reproducibility), they are really useful for data processing and explorations. The notebooks for the workshops run in your browser - so **make sure to save all relevant files** to your computer before shutting it down!
 
-    > **Note**: the earlier notebooks are a bit more read-through, but the level of engagement and your contribute will increase non-linearly. If you are already familiar with Python, there should be some more advanced examples and concepts as we go, so make sure to at least quickly go through all the workshops!
+    > **Note**: the earlier notebooks are a bit more read-through, but the level of engagement and your contributions will increase. If you are already familiar with Python, there should be some more advanced examples and concepts as we go, so make sure to at least quickly go through all the workshops!
 
     ## Types of cells
 
@@ -47,7 +47,7 @@ def _():
 
     ## Explore and interact
 
-    To see the Markdown code used to generate this cell, click on the three dots and select "Show code" (or click `Ctrl + H` with the cell highligted). You can also double-click on the text. To add a new cell, click on the small `+` signes to the left. To execute and move to the next cell, press `Shift + Enter`.
+    To see the Markdown code used to generate this cell, click on the three dots and select "Show code" (or click `Ctrl + H` with the cell highligted). You can also double-click on the text. To add a new cell, click on the small `+` sign to the left. To execute and move to the next cell, press `Shift + Enter`.
 
     ## AI and LLMs
 
