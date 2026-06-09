@@ -53,6 +53,22 @@ def _():
 
     > **Recommendation**: You can use the plus buttons above and below a cell to add new cells - great way to play around with some code! Try to execute **all** cells in the workbooks.
 
+    ## Getting help
+
+    If you type `help(command)` in a cell, you will get a description of how to use the `command`.
+    """)
+    return
+
+
+@app.cell
+def _():
+    help(sorted)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## AI and LLMs
 
     Large Language Models have changed the way we code in real life, but they do **not** eliminate the need to understand how coding and basic algorithms function – they are great to help you draft a function or troubleshoot your code, but it is crucial for you to learn how to ask the question in the best possible way. Understanding of the underlying principles or syntax rules helps you maximise the potential of new technologies. Additionally, the skill of abstracting a problem to basic components and algorithms in order to approach it is essential throughout science.
