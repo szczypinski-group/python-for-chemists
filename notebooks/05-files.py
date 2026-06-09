@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.23.8"
+__generated_with = "0.23.9"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -229,18 +229,18 @@ app._unparsable_cell(
 
         with open("reaction_screening.csv") as f:
             for line in f:
-                # Continue in the loop if "Entry" is in the current line
-                if # COMPLETE HERE :
+                # 
+                if # FIXME: continue in the loop if "Entry" is in the current line
                     # COMPLETE HERE
                 else:
                     # Identify the SMILES string in the line
                     # You might want to use the string.split() function
-                    smiles = # COMPLETE HERE
+                    smiles = # FIXME
                     # Add the SMILES to a set: set.add()
                     substrates.add(smiles)
 
                     # Identify the ee in the line and remove whitespaces
-                    ee = # COMPLETE HERE
+                    ee = # FIXME
 
                     if ee == "nd":
                         ee = 0
@@ -286,28 +286,14 @@ def _(cleanup_screening):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ## Other useful formats
+    ## Other useful formats: JSON and TOML
 
-    This section is a bit **more advanced** - you might want to skip it, but if you are interested there is lots of useful real-world stuff here!
-
-    ### Dictionaries
-
-    Python dictionaries are collections that connect key and values. Maybe we would like to know what catalysts the CAS numbers correspond to. A dictionary is a great way to store that data. They are defined with the following syntax (keys and values can be of any type):
-
-    ```python
-    dictionary = { KEY : VALUE }
-    ```
-
-    We can look-up a value with:
-
-    ```python
-    dictionary[KEY]
-    ```
+    [`JSON`](https://en.wikipedia.org/wiki/JSON) and [`TOML`](https://toml.io/en/) files are great way of storing data in a more structured way than just `CSV`. JSON files look very similar to (potentially nested) dictionaries and can be reasonably human-readable. There even exist standard library modules for dealing with those files - that's how common they are! I recommend using the standard libraries, as they will also figure out the type of data and the overall structures (dictionaries, lists).
     """)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     catalysts_dict = {
         "3375-31-3": "Pd(OAc)2",
@@ -315,51 +301,6 @@ def _():
         "1295-35-8": "Ni(cod)2"
     }
     return (catalysts_dict,)
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    As they are also an iterable, we can write `for` loops that perform some actions for each element of the dictionary. There is a number of different ways to do so - we might be interested in just the keys (e.g., to create a new dictionary with the same keys), just the values (because we don't understand CAS numbers), or all the pairs.
-    """)
-    return
-
-
-@app.cell
-def _(catalysts_dict):
-    print("-" * 25)
-    print("Iterating over keys.")
-    print("-" * 25)
-
-    for cas in catalysts_dict:
-        print(f"CAS number is: {cas}.")
-
-    print()
-    print("-" * 25)
-    print("Iterating over values.")
-    print("-" * 25)
-
-    for cat_name in catalysts_dict.values():
-        print(f"Catalyst is: {cat_name}.")
-
-    print()
-    print("-" * 25)
-    print("Iterating over both.")
-    print("-" * 25)
-
-    for cas, cat_name in catalysts_dict.items():
-        print(f"Catalyst with CAS of {cas} is: {cat_name}.")
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    ### JSON and TOML
-
-    [`JSON`](https://en.wikipedia.org/wiki/JSON) and [`TOML`](https://toml.io/en/) files are great way of storing data in a more structured way than just `CSV`. JSON files look very similar to (potentially nested) dictionaries and can be reasonably human-readable. There even exist standard library modules for dealing with those files - that's how common they are! I recommend using the standard libraries, as they will also figure out the type of data and the overall structures (dictionaries, lists).
-    """)
-    return
 
 
 @app.cell
@@ -451,6 +392,8 @@ def _(catalysts_dict, json):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    # Advanced topics
+
     ## Modules to deal with files
 
     This is another **more advanced topic** and it involves file management.
@@ -461,9 +404,9 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ### `pathlib`
+    ### [`pathlib` library](https://docs.python.org/3/library/pathlib.html)
 
-    You might have noticed, that in the examples above we are "dividing" the output of `mo.notebook_location()` by a string to specify a file notation. This is actually not standard Python - this functionality comes from the [`pathlib` library](https://docs.python.org/3/library/pathlib.html). It is an extremely powerful library to deal with file paths in an [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) way. The take home message is that it is platform-independent (you remember how on Windows paths look something like `C:\Documents\file.txt` and on Linux they would use forward slashes instead, e.g. `/home/Filip/Documents` - that can cause troubles if you treat paths like strings) and allows you to reach any part of the file path, add extra paths, check if things exist, etc.
+    It is an extremely powerful library to deal with file paths in an [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) way. The take home message is that it is platform-independent and allows you to reach any part of the file path, add extra paths, check if things exist, etc.
 
     We will not go through this library in any level of details, I recommend reading up if you are interested. But here are some examples. I also use those examples in the later parts of the course, to expose you to "more modern way" of scripting in Python.
 
@@ -495,7 +438,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    We can then do a whole range of standard file operators using methods such as `touch()`, `mkdir()`, `copy()`, or `unlink()`.
+    We can then do a whole range of standard file operators using methods such as `touch()`, `mkdir()`, `copy()`, or `unlink()`. It also redefines the "division" operator as path concatenation - it is extremely useful and inserts the correct `/` or `\` depending on the operating system. Remember how on Windows paths look something like `C:\Documents\file.txt` and on Linux they would use forward slashes instead, e.g. `/home/Filip/Documents` - that can cause troubles if you treat paths like strings).
     """)
     return
 
@@ -582,7 +525,7 @@ def _(Path):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    ### `shutil`
+    ### [`shutil` library](https://docs.python.org/3/library/shutil.html)
 
     If you need more advanced control over filesystem operations, then the [`shutil`](https://docs.python.org/3/library/shutil.html) library can help a lot. We won't cover it at all, but it has some other useful functionality like copying metadata or removing entire directory trees. If you are interested in that, feel free to read the documentation.
     """)
