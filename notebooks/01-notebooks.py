@@ -83,6 +83,8 @@ def _():
 
     ![Importing notebooks into molab](public/molab.png)
 
+    > **Recommendation**: If you do not have a GitHub account, it is a good idea to create one now. Go to https://github.com/, sign up, create a new (private if you wish) repository called "python-introduction", and upload this notebook there (download it from the `Files` tab on the left). You can then load it up in [`molab`](https://molab.marimo.io/notebooks) and use it as a base for all Python in these workbooks or create new repositories if needed, e.g., for lab write-ups or your MChem project!
+
     ### Local installation
 
     If you don't want to use the browser-based notebooks in the future but have a locally availably `marimo` notebooks, you can install them as a standalone tool (that is what I do).
@@ -110,8 +112,6 @@ def _():
     GitHub is one of the most populars developer platforms for storing, managing, and sharing code. It uses Git and provides a number of other useful features. Since 2018 it has been owned by Microsoft, so feel free to [explore alternatives](https://european-alternatives.eu/category/version-control-services) if you disagree with Microsoft practices.
 
     My recommendation for my research group is that **all **code development should be done with version control on GitHub - you might have noticed that these workbooks are also a GitHub repository! Best practice is to work on the non-`main` branch for any actual development and then create a "pull request" for the tested code to be included in the main branch. For more information about how to use GitHub, see: https://docs.github.com/en/get-started/start-your-journey/hello-world/.
-
-    > **Recommendation**: If you do not have a GitHub account, it is a good idea to create one now. Go to https://github.com/, sign up, create a new (private if you wish) repository called "python-introduction", and upload this notebook there. You can then load it up in [`molab`](https://molab.marimo.io/notebooks). You can use it as a base for all Python in these workbooks and then create new repositories if needed, e.g., for lab write-ups or your MChem project!
     """)
     return
 
