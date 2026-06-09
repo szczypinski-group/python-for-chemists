@@ -69,16 +69,14 @@ def _(mo):
     mo.md(r"""
     ## Assigning variables
 
-    In Python variable assignment is performed with an equal sign. The value on the right is assigned to the variable name on the left:
+    In Python variable assignment is performed with an equal sign. The value on the right is assigned to the variable name on the left. Let's assign some global variables `first_name` and `year` that will be used for more examples.
     """)
     return
 
 
 app._unparsable_cell(
     r"""
-    # These are global variables that we will use throughout the workshop
-
-    # We define strings with single or double quotes (same on both sides)
+    # We define strings with single or double quotes, e.g.
     # first_name = "Filip"
 
     first_name = # FIXME: assign a name to the first_name variable
@@ -186,11 +184,11 @@ app._unparsable_cell(
 
 app._unparsable_cell(
     r"""
-    mass = 1.6
-    light_speed = 3.0e8
-    energy = # FIXME (using E=mc^2)
+    _mass = 1.6
+    _light_speed = 3.0e8
+    _energy = # FIXME (using E=mc^2 but with correct Python operators)
 
-    print(f"Energy is {energy}.")
+    print(f"Energy is {_energy}.")
     """,
     name="_"
 )
@@ -243,7 +241,7 @@ def _(mo):
 
 @app.cell
 def _():
-    nickname = "Elias 'EJ' Corey"
+    _nickname = "Elias 'EJ' Corey"
     return
 
 
@@ -276,20 +274,16 @@ def _(ugly_benzene):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### Collections
+    ### Lists
 
-    We often deal with collections of items, not just a single value. Common data types used for that purpse are lists, sets, and tuples. Internally, they can store any data type - and those can be mixed (e.g., you can have a list of numbers and a string "NA" for then a number is missing). You can even create lists of lists, or other objects!
-
-    The main differences are that sets are unordered and do not contain repeat elements. Lists are _mutable_ (can be modified after creation), while tuples are _immutable_ (cannot be changed).
+    We often deal with collections of items, not just a single value. Internally, they can store any data type - and those can be mixed (e.g., you can have a list of numbers and a string "NA" for then a number is missing). You can even create lists of lists, or other objects! We can add elements to the list with the `append()` function.
     """)
     return
 
 
 @app.cell
 def _():
-    masses_set = {1.01, 4.00, 6.94, 9.01, 10.81, 12.01}
     masses_list = [1.01, 4.00, 6.94, 9.01, 10.81, 12.01]
-    masses_tuple = (1.01, 4.00, 6.94, 9.01, 10.81, 12.01)
     return (masses_list,)
 
 
@@ -306,6 +300,9 @@ def _(mo):
 @app.cell
 def _(masses_list):
     print("Hydrogen mass is", masses_list[0])
+
+    # Let's add a new mass to the list with append()
+    masses_list.append(14.01)
     print("Last mass we recorded is", masses_list[-1])
     return
 
@@ -499,152 +496,69 @@ def _(dx, dy, dz):
 
     distance2 = sqrt(dx ** 2 + dy ** 2 + dz ** 2)
     print(f"Distance is {distance2:.2f}.")
-    return (sqrt,)
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## Classes (more advanced)
-
-    This is a **more advanced topic** that you might want to skip on your first exposure to Python.
-
-    You can see above that we defined two separate variables for each point and calculated the difference between them with another set of variables. What if we had 1,000 different points? We can create a [`class`](https://docs.python.org/3/tutorial/classes.html) that contains all the information about the points (_attributes_) and some useful functions (_methods_) related to them. We will learn more about functions in the next section, but let's consider this example:
-    """)
     return
 
 
-@app.class_definition
-class PointExample:
-    def __init__(
-        self,
-        x: float,
-        y: float,
-        z: float,
-    ):
-        self.x = x 
-        self.y = y
-        self.z = z
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    > **Note**: so called "magic methods" in Python start with two underscores (e.g., `__init__`). They preform some special functions related to the inner working of the programming language; in this case, `__init__` initialises an instance of the class.
+    # Advanced topics
 
-    Where `self` is the conventional name for the first parameter, which corresponds to the instance of the class _itself_. We can can create points consistently as _instances_ of class `Point` and access them usign the familiar "dot" notation:
+    This section is a bit **more advanced** - you might want to skip it, but if you are interested there is lots of useful real-world stuff here!
+
+    ## Sets and tuples
+
+    The main differences between those and lists is that sets are unordered and do not contain repeat elements. Lists are _mutable_ (can be modified after creation), while tuples are _immutable_ (cannot be changed).
     """)
     return
 
 
 @app.cell
 def _():
-    _point1 = PointExample(1, 1, 1)
-    _point2 = PointExample(3, 4, 5)
-
-    print(f"Point(x={_point2.x}, y={_point2.y}, z={_point2.z})")
+    masses_set = {1.01, 4.00, 6.94, 9.01, 10.81, 12.01}
+    masses_tuple = (1.01, 4.00, 6.94, 9.01, 10.81, 12.01)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    but the main strength comes from then isolating relevant methods together. Try writing a method that returns the distance between two points for this new complete class representing a `Point`.
+    ## Dictionaries
+
+    Python dictionaries are collections that connect key and values. Maybe we would like to know what catalysts the CAS numbers correspond to. A dictionary is a great way to store that data. They are defined with the following syntax (keys and values can be of any type):
+
+    ```python
+    dictionary = { KEY : VALUE }
+    ```
+
+    We can look-up a value with:
+
+    ```python
+    dictionary[KEY]
+    ```
     """)
     return
 
 
 @app.cell
-def _(diff_x, diff_y, diff_z, sqrt):
-    class Point:
-        """Represents a point in 3D space.
-
-        Attributes
-        ----------
-        x, y, z : float
-            Coordinates in the 3D space.
-
-        Methods
-        -------
-        distance_from(point)
-            Returns Euclidean distance from another point.
-
-        """
-        def __init__(
-            self,
-            x: float,
-            y: float,
-            z: float,
-        ):
-            self.x = x 
-            self.y = y
-            self.z = z
-
-        def __str__(
-            self
-        ):
-            return f"Point(x={self.x}, y={self.y}, z={self.z})"
-
-        def distance_from(
-            self,
-            point : "Point" # Has to be a string as Point is not defined yet
-        ):
-            # FIXME: Define local variables for diff_x/y/z
-
-            return sqrt(diff_x ** 2 + diff_y ** 2 + diff_z ** 2)
-
-    _point1 = Point(x=1, y=1, z=1)
-    _point2 = Point(3, 4, 5)
-
-    _point1.distance_from(_point2)
-    return (Point,)
-
-
-@app.cell
-def _(Point, mo):
-    import numpy as np
-
-    def check_point():
-        _point1 = Point(1, 1, 1)
-        _point2 = Point(3, 4, 5)
-
-        try:
-            passed = np.isclose(_point1.distance_from(_point2), 5.39, atol=0.01)
-
-            if passed:
-                return mo.callout("✅ Correct", kind="success")
-            else:
-                return mo.callout("❌ Not quite.", kind="danger")  
-
-        except Exception as e:
-            passed = False
-            return mo.callout(f"❌ Python error: {e}.", kind="danger")
-
-    check_point()
+def _():
+    masses_dict = {
+        "hydrogen": 1.01,
+        "helium": 4.00,
+        "lithium": 6.94,
+        "beryllium": 9.01,
+        "boron": 10.81,
+        "carbon": 12.01,
+    }
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    It is often useful to define some more magic methods, such as `__str__` or `__repr__` – those are used when you try to print the object as a string. Compare the output of those two commands:
-    """)
-    return
+    ## Dataclasses
 
-
-@app.cell
-def _(Point):
-    print(f"Class for which we defined __str__: {Point(1,1,1)}")
-    print(f"Class for which we didn't: {PointExample(1,1,1)}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ### Dataclasses
-
-    There are some types of classes that we use very often in software development. One such example are classes that are designed solely to store data – we could do it in dictionaries (see later), but we perhaps a better interface is provided by the special `dataclass` class. Benefit of using classes like this is that many default methods are already defined in a practical way.
+    In the next workshop, you will learn about classes and [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming). One type of pre-defined classes are those that are designed solely to store data – we could do it in dictionaries but we perhaps a better interface is provided by the special `dataclass` class. Benefit of using classes like this is that many default methods are already defined in a practical way.
 
     To define a [dataclass](https://docs.python.org/3/library/dataclasses.html), we use the `@dataclass` [_decorator_](https://www.w3schools.com/python/python_decorators.asp):
 
@@ -657,8 +571,28 @@ def _(mo):
         other_field : data_type
     ```
 
-    we can then define methods within the class, use some built-in ones, and keep our code well compartmentalised.
+    we can then define methods within the class, use some built-in ones, and keep our code well compartmentalised. They can be very easily converted into dictionaries with a built-it `asdict()` function.
+    """)
+    return
 
+
+@app.cell
+def _():
+    from dataclasses import dataclass, asdict
+
+    @dataclass
+    class Person:
+        name : str
+        cis_id: str
+
+    _filip = Person(name="Filip", cis_id="pbpm73")
+    asdict(_filip)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
     Try writing a data class that stores basic information about reaction conditions in the lab notebook.
     """)
     return
