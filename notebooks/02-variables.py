@@ -125,7 +125,23 @@ def _(first_name, year):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Mathematical operators
+    ## Common variable types
+
+    > If it looks like a duck and quacks like a duck, it's a duck.
+
+    At the simplest level, Python is "duck typed". This means that we do not need to worry about specifying the type of a variable on assignment (we can do that, but this is a more advanced topic). The type of variable is directly inferred and the operations will be interpreted in a way that (most often) "just makes sense".
+
+    ### Integers and floating points
+
+    Those are self explanatory. They can be used for mathematical operations and often cast between one another. Try executing the following code cells.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    #### Mathematical operators
 
     In the most basic way, Python can be used as a simple calculator. For more advanced operations (or more efficient ways to perform operations on precise floating-point variables) such as matrix multiplication, we use the `numpy` library covered later.
 
@@ -138,22 +154,6 @@ def _(mo):
     | `//`     | Floor (Integer) division | `3 // 2` | `1`            |
     | `%`      | Modulo (remainder)       | `3 % 2`  | `1`            |
     | `**`     | Exponentiation           | `3 ** 2` | `9`            |
-    """)
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## Common variable types
-
-    > If it looks like a duck and quacks like a duck, it's a duck.
-
-    At the simplest level, Python is "duck typed". This means that we do not need to worry about specifying the type of a variable on assignment (we can do that, but this is a more advanced topic). The type of variable is directly inferred and the operations will be interpreted in a way that (most often) "just makes sense".
-
-    ### Integers and floating points
-
-    Those are self explanatory. They can be used for mathematical operations and often cast between one another. Try executing the following code cells.
     """)
     return
 

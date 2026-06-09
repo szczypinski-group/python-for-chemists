@@ -63,13 +63,13 @@ def _():
 
     ### `molab` cloud
 
-    You can also create and upload existing `marimo` notebooks using their free cloud server: https://molab.marimo.io/notebooks. I recommend creating an account with GitHub, so that you can link notebooks there as well - this way you can easily share and collaborate on them!
+    You can create and upload existing `marimo` notebooks using their free cloud server: https://molab.marimo.io/notebooks. I recommend creating an account with GitHub, so that you can link notebooks there as well - this way you can easily share and collaborate on them!
 
-    ![alt](public/molab.png)
+    ![Importing notebooks into molab](public/molab.png)
 
     ### Local installation
 
-    If you don't want to use the browser-based notebooks in the future but have a locally availably `marimo` notebooks, you can install them locally as a standalone tool (that is what I do).
+    If you don't want to use the browser-based notebooks in the future but have a locally availably `marimo` notebooks, you can install them as a standalone tool (that is what I do).
 
     > **Note**: this cannot be done on University-managed Windows machines yet. You can do it on Linux or on your personal computer.
 
