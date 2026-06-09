@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.23.8"
+__generated_with = "0.23.9"
 app = marimo.App()
 
 
@@ -81,12 +81,12 @@ app._unparsable_cell(
     # We define strings with single or double quotes (same on both sides)
     # first_name = "Filip"
 
-    first_name = # FIXME assign a name to the first_name variable
+    first_name = # FIXME: assign a name to the first_name variable
 
     # We define integer and floating point numbers with no quotes
     # year = 2026
 
-    year = # FIXME assign a number (no quotes) to the year variable
+    year = # FIXME: assign a number (no quotes) to the year variable
     """,
     name="_"
 )
