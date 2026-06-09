@@ -528,6 +528,8 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    # Advanced topics
+
     ## Error handling
 
     This is a **more advanced** topic. You might want to skip it on your first read-through. You might have noticed that sometimes code does not work: an _exception_ is thrown. Once an error like this happens, the script breaks and is no longer executed. Sometimes we don't want that to happen - maybe we want to use a default value instead or we want to print the error to the screen and continue with some later analysis.
