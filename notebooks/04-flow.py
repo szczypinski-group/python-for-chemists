@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.23.8"
+__generated_with = "0.23.9"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -98,37 +98,6 @@ def _():
     return
 
 
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    ### Indentation
-
-    In some programming languages, blocks of code are enclosed in curly brackets or isolated some other way. In Python, we use whitespaces (tabs and spaces) for that - there are no strict rules, but you have to be consistent. I recommend a single tab (converted to four spaces) as the indentation pattern - this is the default in most notebooks and editors.
-
-    ```python
-    # This is the default code level
-
-    import math
-
-    a = 100
-
-    if a > 0:
-        # Everything at this indent level is a block
-        print("We are inside now")
-        if a > 10:
-            # And this is another indented block
-            print("We are even more inside")
-        # Back to the previous level (same block!)
-        print(a)
-
-    # Back to the default level
-    # Rest of the code ...
-
-    ```
-    """)
-    return
-
-
 @app.function
 def check_pH(
     pH : float
@@ -151,7 +120,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Let's now try to solve a simple problem. We want to figure out whether it is Co or Fe that makes up Prussian blue, or maybe neither?
+    Let's now try to solve a simple problem. We want to figure out whether there is Co or Fe in a formula, or maybe neither?
 
     > **Hint**: remember that strings are basically sequences of characters, so you can use the inclusion operator!
     """)
@@ -160,30 +129,32 @@ def _():
 
 app._unparsable_cell(
     """
-    prussian_blue = \"Fe4[Fe(CN)6]3\"
-
-    def check_blue(
+    def check_elements(
         formula : str
     ) -> str:
         \"\"\"Check if there is Fe or Co in the formula.\"\"\"
-        if # COMPLETE HERE
+        if # FIXME: check for Co
             return f\"Cobalt is in {formula}.\"
-        elif # COMPLETE HERE
+        elif # FIXME: else check for Fe
             return f\"Iron is in {formula}.\"
         else:
             return f\"None are in {formula}.\"
+
+    prussian_blue = \"Fe4[Fe(CN)6]3\"
+
+    check_elements(prussian_blue)
     """,
     name="_"
 )
 
 
 @app.cell(hide_code=True)
-def _(check_blue, prussian_blue):
+def _(check_elements, prussian_blue):
     def str_check_pass():
         exercise_1_passed = False
 
         try:
-            exercise_1_passed = check_blue(prussian_blue) == "Iron is in Prussian blue."
+            exercise_1_passed = check_elements(prussian_blue) == "Iron is in Fe4[Fe(CN)6]3."
 
             if exercise_1_passed:
                 return mo.callout("✅ Correct!", kind="success")
@@ -246,14 +217,14 @@ def _():
     A useful sequence to iterate over is a range of integers, we can do it with the `range()` function. Maybe we want to know how much $^{235}$U is left aftert six half-lives?
 
     > **Note**: in Python we can update the value of a variable in one line, e.g., `x = x + 1` (or even shorter `x += 1`) will increment `x` by 1.
+
+    > **Convention**: it is common in Python to just want to repeat some code `N` times without using the variable, in which case we can just "ignore" the loop counter and use `for _ in range(N)`.
     """)
     return
 
 
 app._unparsable_cell(
     """
-    uranium_sample = 255.4
-
     def uranium_left(
         initial_mass : float,
         half_lives: int,    
@@ -275,10 +246,13 @@ app._unparsable_cell(
         \"\"\"
 
         mass = initial_mass
-        for x in range(half_lives):
-            mass =  # COMPLETE HERE
+        for _ in range(half_lives):
+            mass = # FIXME: half the amount of uranium per loop iteration
 
         return mass
+
+    uranium_sample = 255.4
+    print(f\"Uranium left after six half-lives is: {uranium_left(half_lives=6, initial_mass=uranium_sample):.2f} g.\")
     """,
     name="_"
 )
@@ -339,39 +313,37 @@ def _():
     For each Pass from 1 to Total_Length:
         For each Item_Index from 0 to (Total_Length - Pass):
 
-            Look at Current_Value and the Next_Value
+            Look at list[Item_Index] and list[Item_Index+1]
 
-            IF Current_Value is GREATER THAN Next_Value:
+            IF list[Item_Index] is GREATER THAN list[Item_Index+1]:
                 Swap their positions
 
             ELSE:
                 Leave them alone and move to the next pair
     ```
-
-    > **Note**: here, we make use of the loop counters `i` and `j`; it is common in Python to just want to repeat some code `N` times without using the variable, in which case we can just "ignore" the loop counter and use `for _ in range(N)`.
     """)
     return
 
 
 app._unparsable_cell(
     r"""
-    # Unsorted atomic masses: He, Ne, Ar, Kr, Xe
-    masses = [39.948, 20.180, 131.293, 4.0026, 83.798]
-
     def sort_masses(mass_list):
         # How many times do we need to loop
-        n = # COMPLETE HERE
+        n = # FIXME: need to go through all elements of the list
 
         for i in range(1,n):
-            for j in # COMPLETE HERE
-                # --- YOUR CODE HERE ---
+            for j in # FIXME: we want to go total_length - already passed
+                # FIXME:
                 # 1. Compare mass_list[j] and mass_list[j+1]
                 # 2. If the left one is greater than the right one, swap them
+                #    (you will need some temporary variable to store one value)
             # Now i last elements mass_list[:-i] should be sorted
         # Now all of mass_list is sorted
 
         return mass_list
 
+    # Unsorted atomic masses: He, Ne, Ar, Kr, Xe
+    masses = [39.948, 20.180, 131.293, 4.0026, 83.798]
     masses = sort_masses(masses)
     """,
     name="_"
@@ -396,6 +368,54 @@ def _(masses):
             return mo.callout(f"❌ Python error: {e}", kind="danger")
 
     sort_feedback()
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Dictionaries are also iterable, we can write `for` loops that perform some actions for each element of the dictionary. There is a number of different ways to do so - we might be interested in just the keys (e.g., to create a new dictionary with the same keys), just the values, or all the pairs.
+    """)
+    return
+
+
+@app.cell
+def _():
+    masses_dict = {
+        "hydrogen": 1.01,
+        "helium": 4.00,
+        "lithium": 6.94,
+        "beryllium": 9.01,
+        "boron": 10.81,
+        "carbon": 12.01,
+    }
+    return (masses_dict,)
+
+
+@app.cell
+def _(masses_dict):
+    print("-" * 25)
+    print("Iterating over keys.")
+    print("-" * 25)
+
+    for name in masses_dict:
+        print(f"Element is: {name}.")
+
+    print()
+    print("-" * 25)
+    print("Iterating over values.")
+    print("-" * 25)
+
+    for mass in masses_dict.values():
+        print(f"Element's mass is: {mass}.")
+
+    print()
+    print("-" * 25)
+    print("Iterating over both.")
+    print("-" * 25)
+
+    for name, mass in masses_dict.items():
+        print(f"Mass of {name} is {mass}.")
     return
 
 
