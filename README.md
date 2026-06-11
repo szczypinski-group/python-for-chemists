@@ -1,4 +1,4 @@
-# Python for Chemists at Durhma
+# Python for Chemists at Durham
 
 This repository was created from the official template marimo WebAssembly temnplate.
 
