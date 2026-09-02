@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.23.9"
+__generated_with = "0.23.8"
 app = marimo.App()
 
 with app.setup:
@@ -81,7 +81,18 @@ def _():
 
     You can create and upload existing `marimo` notebooks using their free cloud server: https://molab.marimo.io/notebooks. I recommend creating an account with GitHub, so that you can link notebooks there as well - this way you can easily share and collaborate on them!
 
-    ![Importing notebooks into molab](public/molab.png)
+    You can explore and play with the notebooks in these workshops directly in your browser, but keep in mind that you will not be able to save any code or your progress. An easy way to come back to them in the future, is to import them directly into your `molab` cloud. You can find all the notebooks most up-to-date version [directly on GitHub](https://github.com/szczypinski-group/python-for-chemists/tree/main/notebooks). Just copy a link to the notebook from there and import in `molab`:
+
+    ![Importing GitHub notebooks into molab](public/import-notebook-1.png)
+    ![Importing GitHub notebooks into molab](public/import-notebook-2.png)
+
+    https://molab.marimo.io/github/szczypinski-group/python-for-chemists/notebooks/01-notebooks.py
+
+    > **Tip**: You can open any notebook from GitHub directly with `molab` by changing the `https://github.com/` part of the URL with `https://molab.marimo.io/github/`, e.g., [`https://molab.marimo.io/github/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py`](https://molab.marimo.io/github/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py) instead of `https://github.com/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py`. You can then "fork it" to save it into your own `molab` space and keep the edits!
+
+    In the future, you might want to be "mirroring" a notebook directly - so that you can synchronise the changes with GitHub. There is an option to do that directly when adding a notebook into `molab`.
+
+    ![Mirroring GitHub notebooks in molab](public/molab.png)
 
     > **Recommendation**: If you do not have a GitHub account, it is a good idea to create one now. Go to https://github.com/, sign up, create a new (private if you wish) repository called "python-introduction", and upload this notebook there (download it from the `Files` tab on the left). You can then load it up in [`molab`](https://molab.marimo.io/notebooks) and use it as a base for all Python in these workbooks or create new repositories if needed, e.g., for lab write-ups or your MChem project!
 
