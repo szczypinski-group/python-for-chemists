@@ -86,8 +86,6 @@ def _():
     ![Importing GitHub notebooks into molab](public/import-notebook-1.png)
     ![Importing GitHub notebooks into molab](public/import-notebook-2.png)
 
-    https://molab.marimo.io/github/szczypinski-group/python-for-chemists/notebooks/01-notebooks.py
-
     > **Tip**: You can open any notebook from GitHub directly with `molab` by changing the `https://github.com/` part of the URL with `https://molab.marimo.io/github/`, e.g., [`https://molab.marimo.io/github/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py`](https://molab.marimo.io/github/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py) instead of `https://github.com/szczypinski-group/python-for-chemists/tree/main/notebooks/02-variables.py`. You can then "fork it" to save it into your own `molab` space and keep the edits!
 
     In the future, you might want to be "mirroring" a notebook directly - so that you can synchronise the changes with GitHub. There is an option to do that directly when adding a notebook into `molab`.
