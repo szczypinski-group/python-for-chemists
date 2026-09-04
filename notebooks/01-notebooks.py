@@ -103,7 +103,7 @@ def _():
     For installing anything Python-related, I **very strongly recommend** the `uv` package (unfortunately, you cannot get it from AppsAnywhere yet). Installation instructions for all platforms are [here](https://docs.astral.sh/uv/getting-started/installation/). Once you have `uv` installed, you can use marimo extremely easily - check the [website](https://docs.astral.sh/uv/guides/integration/marimo/) for instructions but they basically boil down to typing in Terminal:
 
     ```sh
-    uvx marimo edit
+    uvx marimo edit --sandbox my_notebook.py
     ```
     """)
     return
