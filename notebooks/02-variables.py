@@ -600,7 +600,6 @@ def _(mo):
 
 app._unparsable_cell(
     r"""
-    from dataclasses import dataclass
 
     @dataclass
     class Reaction:
