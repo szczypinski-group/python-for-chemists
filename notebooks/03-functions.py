@@ -308,7 +308,7 @@ def _():
 
     Here, we will use the [numpy convention](https://numpydoc.readthedocs.io/en/latest/format.html) for our docstrings. Some developers prefer the [Google convention](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings).
 
-    They are not necesasry but it is a good habit to include them - the future you will thank you greatly for doing it as you go! Let's write a docstring for our temperature conversion function.
+    They are not necessary but it is a good habit to include them - the future you will thank you greatly for doing it as you go! Let's write a docstring for our temperature conversion function.
     """)
     return
 
@@ -345,7 +345,7 @@ def from_celsius(
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Now try typing `from_celsius()` in the next cell and see how you get a little helpful paragraph about the function!
+    Now try typing `from_celsius` in the next cell -- a little box with information about the function should appear as you're typing! The same paragraph should also appear if you hover your mouse over the function name or if you run `help(from_celsius)`.
     """)
     return
 
